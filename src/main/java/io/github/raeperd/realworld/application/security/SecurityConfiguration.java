@@ -32,7 +32,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
 
     @Override
     public void configure(WebSecurity web) {
-        web.ignoring().antMatchers(POST, "/users", "/users/login");
+        web.ignoring().antMatchers(POST, "/users", "/users/login")
+                .antMatchers("/h2-console/**");
     }
 
     @Override

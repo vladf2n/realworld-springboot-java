@@ -1,6 +1,7 @@
 package io.github.raeperd.realworld.domain.article;
 
 import io.github.raeperd.realworld.domain.article.comment.Comment;
+import io.github.raeperd.realworld.domain.article.import_article.Import;
 import io.github.raeperd.realworld.domain.user.User;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -30,6 +31,13 @@ public class Article {
     @JoinColumn(name = "author_id", referencedColumnName = "id", nullable = false)
     @ManyToOne(fetch = EAGER)
     private User author;
+
+    @Column(name = "author_name")
+    private String authorName;
+
+    @JoinColumn(name = "import_id", referencedColumnName = "id", nullable = true)
+    @ManyToOne(fetch = EAGER)
+    private Import importArticle;
 
     @Embedded
     private ArticleContents contents;
@@ -124,6 +132,14 @@ public class Article {
 
     public Set<Comment> getComments() {
         return comments;
+    }
+
+    public Import getImportArticle() {
+        return importArticle;
+    }
+
+    public void setImportArticle(Import importArticle) {
+        this.importArticle = importArticle;
     }
 
     @Override
